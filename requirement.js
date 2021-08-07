@@ -74,3 +74,4 @@ const { publications } = require("./database")
 
 
 
+// how does the server serves the request
