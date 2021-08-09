@@ -4,7 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 //database
-const database = require("./database/index")
+const database = require("./database/index");
+
+//models
 
 
 //initializing express
