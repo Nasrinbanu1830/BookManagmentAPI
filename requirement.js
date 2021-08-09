@@ -1,7 +1,5 @@
 // Requirements
 
-const { publications } = require("./database")
-
 // We are a company that handles book publications
 
 // Book
@@ -15,63 +13,69 @@ const { publications } = require("./database")
 
 // Requirements
 
+// ---------------------------------------------------------------------------------------
+
 // Books
 
 // We need an API
-// to get all books
-// to get specific book
-// to get a list of books based on category
-// to get a list of books based on author
 
-//POST
-//New Book 
+// GET
+// to get all books ✅ 📌
+// to get specific book ✅ 📌
+// to get a list of books based on category✅ 📌
+// to get a list of books based on author -> [Task]🔥 📕
 
-//PUT 
-//update book details
-//update/add new author
+// POST
+// New Book ✅ 📌
 
-//DELETE
-// delete a book
-//delete a author from a book
+// PUT
+// Update book details✅ 📌
+// update/add new author✅ 📌
+
+// DELETE
+// delete a book✅ 📌
+// delete a author from a book✅ 📌
+
+// ---------------------------------------------------------------------------------------
 
 // Author
 
 // We need an API
-// to get all authors
-// to get specific author
-// to get a list of authors based on a book.
+
+// GET
+// to get all authors✅ 📌
+// to get specific author [Task]🔥  📕
+// to get a list of authors based on a book. ✅  📕
 
 // POST
-//new author
+// New Author ✅ 📌
 
-//PUT
-//Author details
+// PUT
+// update Author name using id [Task] 🔥
 
-//DELETE
-// delete an author
+// DELETE
+// Delete an author [Task] 🔥🚀
 
+// ---------------------------------------------------------------------------------------
 
 // Publication
 
-//GET
 // We need an API
-// to get all publications
-// to get specific publication
-// to get a list of publications based on a book.
 
-//POST
-// add new publication
+// GET
+// to get all publications ✅  📕
+// to get specific publication [Task]🔥  📕
+// to get a list of publications based on a book. [Task]🔥  📕
 
+// POST
+// Add new publication [task] 🔥  📕
 
-//PUT
-// update publication detail
-// add new book to publication
+// PUT
+// update publication name using id [Task] 🔥
+// update/add new book to a publication✅
 
-//DELETE
-//delete book from publications
-//delete publication
+// DELETE
+// delete a book from publication ✅
+// delete a publication [Task] 🔥🚀
 
-
-
-
-// how does the server serves the request
+// Add mongoose validation to All the models [Task] 🔥
