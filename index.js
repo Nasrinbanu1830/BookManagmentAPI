@@ -267,14 +267,13 @@ Parameter    isbn
 Method       DELETE
 */ 
 
-shapeAI.delete("/book/delete/:isbn", (req,res) => {
-   
-    const updatedBookDatabase = database.books.filter(
-        (book) => book.ISBN !== req.params.isbn
-        );
+shapeAI.delete("/book/delete/:isbn", async (req,res) => {
 
-        database.books = updatedBookDatabase;
-        return res.json({ books:database.books });
+   const updatedBookDatabase = await BookModel.findOneAndDelete(
+       {
+            ISBN: req.params.isbn,
+        });
+         return res.json({ books:database.books });
 
 });
 
@@ -282,36 +281,45 @@ shapeAI.delete("/book/delete/:isbn", (req,res) => {
 Route        /book/delete/author
 Description  delete a author from book
 Access       PUBLIC
-Parameter    isbn,author
+Parameter    isbn,author id
 Method       DELETE
 */ 
 
 shapeAI.delete("/book/delete/author/:isbn/:authorId", (req,res) => {
     
     //update the book database
-    database.books.forEach((book) => {
-      if(book.ISBN === req.params.isbn){
-          const newAuthorList = book.authors.filter((author) => author !== parseInt(req.params.authorId)
-          );
-          book.authors = newAuthorList;
-          return;
-      }
-    });
+
+    const updatedBook = await BookModel.findOneAndUpdate(
+        {
+            ISBN : req.params.isbn,
+        },
+        {
+             $pull:{
+                 authors: parseInt(req.params.authorId);
+             },
+        },
+        {
+            new: true
+        }
+        );
 
     //update author database
-    database.authors.forEach((author) => {
-      if(author.id === parseInt(req.params.authorId)){
-          const newBooksList = author.books.filter(
-              (book) => book !== req.params.isbn
-              );
-
-         author.books = newBooksList;
-         return;
-            }
-    });
+    const updatedAuthor = await AuthorModel.findOneAndUpdate(
+        {
+            id : parseInt(req.params.authorId),
+        },
+        {
+            $pull:{
+                books: req.params.isbn,
+            },
+        },
+        {
+            new: true
+        }
+    );
     return res.json({
-        book: database.books, 
-        author: database.authors,
+        book: updatedBook, 
+        author: updatedAuthor,
         message:"author was deleted",
         });
 });
