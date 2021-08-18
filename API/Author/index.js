@@ -15,7 +15,7 @@ Method       - GET
 */ 
 Router.get("/:isbn", async (req,res) => {
     const getAllAuthors = awaitAuthorModel.find();
-   return res.json({ getAllAuthors });
+   return res.json({ authors: getAllAuthors });
 });
 
 
@@ -124,12 +124,6 @@ Router.put("/book/publication/name/:id", async(req, res)=> {
             new: true,
         }
     );
-    // database.publications.forEach((publication)=> {
-    //     if(publication.id=== parseInt(req.params.id)){
-    //         publication.name= req.body.newPublicationName;
-    //         return;
-    //     }
-    // });
  return res.json({publication: UpdatePublication}); 
  });
 
@@ -198,3 +192,4 @@ Router.delete("book/delete/:isbn/:authorId", async(req, res)=> {
 
 
 module.exports = Router;
+

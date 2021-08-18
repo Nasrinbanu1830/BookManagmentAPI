@@ -5,10 +5,11 @@ const mongoose = require("mongoose");
 
 
 
+
 //initializing Microservices Routes
 const Books = require("./API/Book");
-const Authors = require("./API/author");
-const Publications = require("./API/publication");
+const Authors = require("./API/Author");
+const Publications = require("./API/Publication");
 
 
 
@@ -27,13 +28,13 @@ mongoose
     useCreateIndex: true
   
 })
-.then(() => console.log("connection established!!!!!"))
+.then(() => console.log("connection established!!!!!"));
 
 
 //initializing Microservices
 shapeAI.use("/book",Books);
-shapeAI.use("/author",authors);
-shapeAI.use("/publication",publications);
+shapeAI.use("/author",Authors);
+shapeAI.use("/publication",Publications);
 
 
 

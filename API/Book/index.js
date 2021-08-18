@@ -1,4 +1,3 @@
-
 //initialize express router
 const Router = require("express").Router();
 
@@ -14,9 +13,13 @@ Method      - GET
 */ 
 
 Router.get("/", async (req,res) =>{
+    
    const getAllBooks = await BookModel.find();
-   return res.json({ books: getAllBooks });
-});
+
+     return res.json({ books: getAllBooks });
+    });
+
+
 
 /*
 Route        - "/is/:isbn"
@@ -54,24 +57,6 @@ Router.get("/c/:category", async (req,res) => {
 
 });
 
-/* 
-Route       - "/lang:/la"
-Description - get all the books based on language
-Access      - Public
-Parameter   - None
-Method      - GET
-*/
-
-//Build an api for the books based on language
-Router.get("/lang/:la", async(req, res)=>{
-   const language= await BookModel.findOne({Language: req.params.la});
-
-   if(!language){
-       return res.json({error: `No Book found based on category ${req.params.la}`});
-   }
-
-  return res.json({books: language});
-});
 
 /*
 Route       - "/book/new"
@@ -82,12 +67,16 @@ Method      - POST
 */ 
 
 Router.post("/new", async (req,res) => {
+    try{
    const { newBook } = req.body;
  
   await BookModel.create(newBook);
  
  return res.json({ message:"book was added!" });
- });
+}catch(error){
+    throw new Error(error);
+}
+});
 
  /*
 Route       - "/book/update/:title"
@@ -234,3 +223,5 @@ Router.delete("/delete/author/:isbn/:authorId", async (req,res) => {
 
 
 module.exports = Router;
+//
+
