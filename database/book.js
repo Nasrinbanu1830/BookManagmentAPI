@@ -5,9 +5,19 @@ const BookSchema = mongoose.Schema({
     ISBN: {
         type: String,
         required: true,
+        minLength: 8,
+        MaxLength: 10,
     },
-    title: String,
-    authors: [Number],
+    title: {
+        type: String,
+        required: true,
+        minLength: 8,
+        MaxLength: 10,
+      },
+    authors: {
+        type:Number,
+        required: true,
+ },
     language: String,
     pubDate: String,
     numOfPage: Number,

@@ -35,7 +35,7 @@ Router.get("/is/:isbn", async (req,res) => {
                error: `No book found for the  ISBN of ${req.params.isbn}`,
       });
   }
-      return res.json({ book: getSpecificBook});
+      return res.json({ books: getSpecificBook});
 });
 
 /*
@@ -73,8 +73,8 @@ Router.post("/new", async (req,res) => {
   await BookModel.create(newBook);
  
  return res.json({ message:"book was added!" });
-}catch(error){
-    throw new Error(error);
+}catch (error) {
+    return res.json({ error:error.message});
 }
 });
 
@@ -212,8 +212,8 @@ Router.delete("/delete/author/:isbn/:authorId", async (req,res) => {
         }
     );
     return res.json({
-        book: updatedBook, 
-        author: updatedAuthor,
+        books: updatedBook, 
+        authors: updatedAuthor,
         message:"author was deleted",
         });
 });

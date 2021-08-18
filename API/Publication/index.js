@@ -48,10 +48,14 @@ Parameter   - none
 Method      - POST
 */ 
  Router.post("/new",async (req,res) => {
+     try{
     const { newPublication } = req.body;
       await  PublicationModel.create(newPublication);
     return res.json({ books: newPublication,message:"author was added!" })    
-    });
+     } catch (error) {
+         return res.json ({ error : error.message });
+     }
+  });
 
 
 /*
